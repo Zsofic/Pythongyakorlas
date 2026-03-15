@@ -38,23 +38,38 @@ katalogus = (
 #print(katalogus)
 
 
-def keres(katalogus, szerzo=None, cim=None, kiadas=None):
+def keres(katalogus, szerzo=None, cim=None, kiadas=None, case_sensitive_search=True):
     talalatok = []
     for elem in katalogus:
-        #print(elem)
+        # print(elem)
         if "katalogus" in elem:
-            #print("Uj katalógus: " + elem["forras"])
-            eredmeny = keres(elem["katalogus"], szerzo, cim, kiadas)
+            # print("Uj katalógus: " + elem["forras"])
+            eredmeny = keres(elem["katalogus"], szerzo, cim, kiadas, case_sensitive_search)
             talalatok.extend(eredmeny)
-            #print(str(elem["forras"]) + "-ban talált eredmény: " + str(eredmeny))
+            # print(str(elem["forras"]) + "-ban talált eredmény: " + str(eredmeny))
         elif "cim" in elem:
-            if (cim is None or cim in elem["cim"]) and (szerzo is None or szerzo in elem["szerzo"]) and (kiadas is None or (isinstance(kiadas, int) and kiadas == elem["kiadas"]) or (isinstance(kiadas, tuple) and kiadas[0] <= elem["kiadas"] <= kiadas[1])):
-                talalatok.append(elem)
+            elem_szerzo = elem["szerzo"]
+            elem_cim = elem["cim"]
+            keres_szerzo = szerzo
+            keres_cim = cim
 
+            if not case_sensitive_search:
+                if elem_szerzo is not None:
+                    elem_szerzo = elem_szerzo.upper()
+                if elem_cim is not None:
+                    elem_cim = elem_cim.upper()
+                if keres_szerzo is not None:
+                    keres_szerzo = keres_szerzo.upper()
+                if keres_cim is not None:
+                    keres_cim = keres_cim.upper()
+
+            if (cim is None or cim in elem["cim"]) and (szerzo is None or szerzo in elem["szerzo"]) and (
+                    kiadas is None or (isinstance(kiadas, int) and kiadas == elem["kiadas"]) or (
+                    isinstance(kiadas, tuple) and kiadas[0] <= elem["kiadas"] <= kiadas[1])):                talalatok.append(elem)
     return talalatok
 
 
-print(keres(katalogus, szerzo="il"))
-print(keres(katalogus, kiadas=1967))
-print(keres(katalogus, szerzo="un", kiadas=(1900, 2010)))
-print(keres(katalogus, cim="ég"))
+
+print(keres(katalogus, cim="Le"))
+print(keres(katalogus, cim="le", case_sensitive_search=True))
+print(keres(katalogus, cim="le", case_sensitive_search=False))
