@@ -63,10 +63,7 @@ def keres(katalogus, szerzo=None, cim=None, kiadas=None, case_sensitive_search=T
                 if keres_cim is not None:
                     keres_cim = keres_cim.upper()
 
-            if (keres_cim is None or keres_cim in elem_cim) and \
-                    (keres_szerzo is None or keres_szerzo in elem_szerzo) and \
-                    (kiadas is None or (isinstance(kiadas, int) and kiadas == elem["kiadas"]) or
-                     (isinstance(kiadas, tuple) and kiadas[0] <= elem["kiadas"] <= kiadas[1])):
+            if ((keres_cim is None or keres_cim in elem_cim) and (keres_szerzo is None or keres_szerzo in elem_szerzo) and (kiadas is None or (isinstance(kiadas, int) and kiadas == elem["kiadas"]) or (isinstance(kiadas, tuple) and kiadas[0] <= elem["kiadas"] <= kiadas[1]))):
                 talalatok.append(elem)
 
     return talalatok
