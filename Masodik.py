@@ -26,3 +26,5 @@ while True:
     print("Valasz: " + str(valasz))
 print("Program vege!")
 
+
+
