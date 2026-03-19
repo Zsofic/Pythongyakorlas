@@ -18,3 +18,15 @@ with open("teszt.csv", "r", encoding="utf-8", newline="") as f:
                 print(row)
 
                 print("Cím:")
+
+        import csv
+
+        adatok = [
+            ["szerzo", "cim", "kiadas"],
+            ["George Orwell", "1984", 1949],
+            ["Ray Bradbury", "Fahrenheit 451", 1953]
+        ]
+
+        with open("uj_konyvek.csv", "w", encoding="utf-8", newline="") as f:
+            iro = csv.writer(f)
+            iro.writerows(adatok)
