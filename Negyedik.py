@@ -45,3 +45,34 @@ class Konyv(Dokumentum):
 class Folyoirat(Dokumentum):
     def leiras(self):
         return "Ez egy folyoirat a dokumentum osztalybol"
+
+d = Dokumentum()
+print(d.leiras())
+k = Konyv()
+print(k.leiras())
+f = Folyoirat()
+print(f.leiras())
+
+#mini projekt
+class Konyv1:
+    def __init__(self, cim, szerzo):
+        self.cim = cim
+        self.szerzo = szerzo
+
+class Konyvtar:
+    def __init__(self):
+        self.konyvek = []
+
+    def hozzaad(self, konyv):
+        self.konyvek.append(konyv)
+
+    def lista(self):
+        for konyv in self.konyvek:
+            print(f"{konyv}")
+
+konyvtar = Konyvtar()
+konyvtar.hozzaad(Konyv1("1984", "George Orwell"))
+konyvtar.hozzaad(Konyv1("Brave New World", "Aldous Huxley"))
+konyvtar.lista()
+
+
