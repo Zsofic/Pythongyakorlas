@@ -44,4 +44,4 @@ print(lista1000)
 
 gen3 = (i for i in range(1, 1001))
 print(type(gen3))
-print(list(gen3)[:10])
+print(list(gen3)[0:10])
