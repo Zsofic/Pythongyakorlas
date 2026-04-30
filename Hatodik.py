@@ -54,4 +54,15 @@ def atlag(szamok):
 szamok = [13, 20, 49, "cica", 5]
 print(atlag(szamok))
 
+
 #mini projekt
+szam_lista = []
+while True:
+    try:
+        szam = float(input("Adj meg egy számot: "))
+        szam_lista.append(szam)
+        print("Eddigiek: ", szam_lista)
+
+    except ValueError:
+        print("Hiba: ez nem szám!")
+        continue
