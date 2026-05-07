@@ -19,10 +19,10 @@ osszeg = 0
 
 for i in sys.argv[1:]:
     try:
-        logging.debug("Kovetkező szám:" + i)
+        logging.debug(f"Következő szám: {i}")
         osszeg += int(i)
     except ValueError:
-        logging.warning("Nem számot adtál meg: {i}")
+        logging.warning(f"Nem számot adtál meg: {i}")
 
 print("A megadott számok összege:", osszeg)
 
@@ -32,3 +32,14 @@ def oszt(a, b):
     return a / b
 
 print(oszt(10, 0))
+
+#Közepes+
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+for i in range(1, 6):
+    logging.debug("következő szám:" + str(i))
+
+    if i % 2 == 0:
+        logging.info("páros szám:" + str(i))
